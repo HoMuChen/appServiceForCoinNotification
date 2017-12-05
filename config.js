@@ -13,8 +13,22 @@ const alertsDBConfig = {
 	tb: process.env['RTK_TB']
 }
 
+const dcDBConfig = {
+	host: process.env['DC_HOST'],
+	port: process.env['DC_PORT'],
+	db: process.env['DC_DB'],
+	bitTB: process.env['DC_BIT_TB'],
+	ethTB: process.env['DC_ETH_TB'],
+}
+
+const pushApiServerConfig = {
+	host: process.env['PUSH_API_SERVER_HOST'],
+}
+
 module.exports = {
 	apiConfig,
 	authConfig,
-	alertsDBConfig
+	alertsDBConfig,
+	dcDBConfig,
+	pushApiServerConfig,
 }

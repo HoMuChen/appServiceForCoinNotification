@@ -20,6 +20,12 @@ class Alerts {
 			.then( cur => cur.toArray() )
 	}
 	
+	getByCoin(coin) {
+		return this.getConn()
+			.then( conn => r.table(TB).filter({coin: coin}).run(conn) )
+			.then( cur =>  cur.toArray() )
+	}	
+
 	getByUserId(userId) {
 		return this.getConn()
 			.then( conn => r.table(TB).filter({user_id: userId}).run(conn) )
