@@ -9,6 +9,7 @@ async function check() {
 
 	r.table(config.bitTB).changes().run(conn, bitChangesCB);
 	r.table(config.ethTB).changes().run(conn, ethChangesCB);
+	r.table(config.ltcTB).changes().run(conn, ltcChangesCB);
 }
 
 const bitChangesCB = (function() {
@@ -30,6 +31,18 @@ const ethChangesCB = (function() {
 		cur.each((err, row) => {
 			const curPrice = Number(row.new_val.price.replace(',', ''));
 			checkAndPush(prePrice, curPrice, 'eth');
+			prePrice = curPrice;
+		})
+	}
+})()
+
+const ltcChangesCB = (function() {
+	var prePrice = 0;
+	
+	return function(err, cur) {
+		cur.each((err, row) => {
+			const curPrice = Number(row.new_val.price.replace(',', ''));
+			checkAndPush(prePrice, curPrice, 'ltc');
 			prePrice = curPrice;
 		})
 	}

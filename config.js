@@ -19,6 +19,7 @@ const dcDBConfig = {
 	db: process.env['DC_DB'],
 	bitTB: process.env['DC_BIT_TB'],
 	ethTB: process.env['DC_ETH_TB'],
+	ltcTB: process.env['DC_LTC_TB'],
 }
 
 const pushApiServerConfig = {

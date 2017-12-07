@@ -11,19 +11,6 @@ const alerts = require('./routes/alerts');
 
 const app = new express();
 
-const jwtCheck = jwt({
-    secret: jwks.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: `https:\/\/${config.authConfig.domain}/.well-known/jwks.json`
-    }),
-    issuer: `https:\/\/${config.authConfig.domain}/`,
-    algorithms: ['RS256']
-});
-
-app.use(jwtCheck);
-
 app.use(morgan(':method :url :status :response-time ms - :res[content-length]', {
 	stream: logger.stream
 }));
