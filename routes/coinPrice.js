@@ -7,12 +7,14 @@ function getByCoinHandler(req, res) {
 
   Model.getByCoin(coin, limit)
     .then(prices => {
-			docs = prices.map(price => {
-				const date = new Date(((price['id']/10).toFixed(0))*10000)
-				price['price'] = Number(price['price'].replace(',', ''))
-				price['time'] = date.toLocaleString();
-				return price;
-			})
+			docs = prices
+				.sort((a, b) => b.id-a.id)
+				.map(price => {
+					const date = new Date(((price['id']/10).toFixed(0))*10000)
+					price['price'] = Number(price['price'].replace(',', ''))
+					price['time'] = date.toLocaleString();
+					return price;
+				})
 			res.json(docs)
 		})
     .catch(e => {
