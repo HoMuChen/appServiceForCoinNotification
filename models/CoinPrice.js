@@ -17,16 +17,22 @@ class CoinPrice {
 	}
 
 	getByCoin(coin, limit) {
+		const to = Date.now()/1000;
+		const from = Date.now()/1000 - (limit*5*60)
+
 		switch(coin) {
 			case "bit":
 				return this.getConn()
-					.then( conn => r.table(BITTB).orderBy(r.desc('id')).limit(limit).run(conn) )
+					.then( conn => r.table(BITTB).between(from, to).run(conn) )
+					.then(cur => cur.toArray())
 			case "eth":
 				return this.getConn()
-					.then( conn => r.table(ETHTB).orderBy(r.desc('id')).limit(limit).run(conn) )
+					.then( conn => r.table(ETHTB).between(from, to).run(conn) )
+					.then(cur => cur.toArray())
 			case "ltc":
 				return this.getConn()
-					.then( conn => r.table(LTCTB).orderBy(r.desc('id')).limit(limit).run(conn) )
+					.then( conn => r.table(LTCTB).between(from, to).run(conn) )
+					.then(cur => cur.toArray())
 			default:
 				return new Promise((resolve, reject) => { reject(new Error("no this type of coin")) })
 		}
