@@ -9,6 +9,8 @@ const config = require('./config');
 const logger = require('./utils/logger');
 const alerts = require('./routes/alerts');
 const coinPrice = require('./routes/coinPrice');
+const taiex = require('./routes/taiex');
+const legalFoundation = require('./routes/legalFoundation');
 
 const app = new express();
 
@@ -20,5 +22,7 @@ app.use(cors());
 
 app.use('/alerts', alerts());
 app.use('/coin_price', coinPrice());
+app.use('/taiex', taiex());
+app.use('/legal_foundation', legalFoundation());
 
 module.exports = app;
