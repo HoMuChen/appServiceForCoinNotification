@@ -28,7 +28,7 @@ class LegalFoundation {
 		const fromStr = from.toJSON().split('T')[0];
 
 		return this.getConn()
-			.then( conn => r.table(TB).between(fromStr, toStr, {index: 'date'}).orderBy({index: 'date'}).run(conn) )
+			.then( conn => r.table(TB).between(fromStr, toStr, {index: 'date', rightBound: 'closed'}).orderBy({index: 'date'}).run(conn) )
 			.then( cur => cur.toArray() )
 			.then( list => list.filter(row => row.name === NAME[name]) )
 	}
