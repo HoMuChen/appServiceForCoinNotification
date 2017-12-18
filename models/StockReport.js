@@ -4,9 +4,9 @@ const config = require('../config');
 const HOST = config.appDBConfig.host;
 const PORT = config.appDBConfig.port;
 const DB = config.appDBConfig.db;
-const TB = 'coinAlerts';
+const TB = 'stockReport';
 
-class Alerts {
+class StockReport {
 	constructor() {
 	}
 
@@ -20,12 +20,6 @@ class Alerts {
 			.then( cur => cur.toArray() )
 	}
 	
-	getByCoin(coin) {
-		return this.getConn()
-			.then( conn => r.table(TB).filter({coin: coin}).run(conn) )
-			.then( cur =>  cur.toArray() )
-	}	
-
 	getByUserId(userId) {
 		return this.getConn()
 			.then( conn => r.table(TB).filter({user_id: userId}).run(conn) )
@@ -44,4 +38,4 @@ class Alerts {
 	
 }
 
-module.exports = new Alerts();
+module.exports = new StockReport();

@@ -6,11 +6,10 @@ const authConfig = {
 	domain: process.env['AUTH0_DOMAIN']
 }
 
-const alertsDBConfig = {
+const appDBConfig = {
 	host: process.env['RTK_HOST'],
 	port: process.env['RTK_PORT'],
 	db: process.env['RTK_DB'],
-	tb: process.env['RTK_TB']
 }
 
 const dcDBConfig = {
@@ -22,6 +21,8 @@ const dcDBConfig = {
 	ltcTB: process.env['DC_LTC_TB'],
 	legalFoundationTB: process.env['DC_LF_TB'],
 	taiexTB: process.env['DC_TAIEX_TB'],
+	dispersionTB: process.env['DC_DISPERSION_TB'],
+	stockPriceTB: process.env['DC_STOCK_PRICE_TB'],
 }
 
 const pushApiServerConfig = {
@@ -31,7 +32,7 @@ const pushApiServerConfig = {
 module.exports = {
 	apiConfig,
 	authConfig,
-	alertsDBConfig,
+	appDBConfig,
 	dcDBConfig,
 	pushApiServerConfig,
 }
